@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { CssBaseline, Grid } from '@material-ui/core';
+import { CssBaseline, Grid, Button } from '@material-ui/core';
 
 import Header from './components/Header/Header';
 import List from './components/List/List';
@@ -18,14 +18,20 @@ const App = () => {
       setCoordinates({ lat: latitude, lng: longitude });
     });
   }, []);
-  useEffect(() => {
-    console.log(coordinates, bounds)
+
+  const handleSearch = () => {
     getPlacesData(bounds.sw, bounds.ne)
       .then((data) => {
-        console.log(data);
         setPlaces(data);
       })
-  }, [coordinates, bounds]);
+  }
+  // useEffect(() => {
+  //   getPlacesData(bounds.sw, bounds.ne)
+  //     .then((data) => {
+  //       console.log(data);
+  //       setPlaces(data);
+  //     })
+  // }, [coordinates, bounds]);
 
   return (
     <>
@@ -36,6 +42,7 @@ const App = () => {
                 <List places={places} childClicked={childClicked} />
             </Grid>
             <Grid item xs={12} md={8}>
+              <Button variant='contained' color='secondary' style={{ margin: '5px'}} onClick={handleSearch}>Search Map Area</Button>
                 <Map 
                   places={places}
                   setCoordinates={setCoordinates}

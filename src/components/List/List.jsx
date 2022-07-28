@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
+import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, Select, Button } from '@material-ui/core';
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
 import useStyles from './styles';
 
@@ -13,7 +13,7 @@ const List = ({ places, childClicked }) => {
 
   return (
     <div className={classes.container}>
-      <Typography variant='h4'>Restaurants, Hotels, and Attractions near you.</Typography>
+      <Typography variant='h4'>Search Restaurants, Hotels, and Attractions</Typography>
       <FormControl className={classes.formControl}>
         <InputLabel>Type</InputLabel>
         <Select value={type} onChange={(e) => setType(e.target.value)}>
@@ -32,11 +32,11 @@ const List = ({ places, childClicked }) => {
         </Select>
       </FormControl>
       <Grid container spacing={3} className={classes.list}>
-        {places?.map((place, i) => (
+        {places.length != 0 ? places.map((place, i) => (
           <Grid item key={i} xs={12}>
             <PlaceDetails place={place} />
-          </Grid>
-        ))}
+          </Grid> 
+        )) : <Grid item><p>Search the map area to find places.</p></Grid>}
       </Grid>
     </div>
   )
