@@ -12,6 +12,7 @@ const App = () => {
   const [coordinates, setCoordinates] = useState({});
   const [bounds, setBounds] = useState({});
   const [childClicked, setChildClicked] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude }}) => {
@@ -20,11 +21,15 @@ const App = () => {
   }, []);
 
   const handleSearch = () => {
+    setIsLoading(true);
     getPlacesData(bounds.sw, bounds.ne)
       .then((data) => {
         setPlaces(data);
+        setIsLoading(false);
       })
   }
+
+  /* Use this useEffect for updating map based on change of bounds */
   // useEffect(() => {
   //   getPlacesData(bounds.sw, bounds.ne)
   //     .then((data) => {
@@ -39,7 +44,7 @@ const App = () => {
         <Header />
         <Grid container spacing={3} style={{ width: '100%'}}>
             <Grid item xs={12} md={4}>
-                <List places={places} childClicked={childClicked} />
+                <List places={places} childClicked={childClicked} handleSearch={handleSearch} isLoading={isLoading} />
             </Grid>
             <Grid item xs={12} md={8}>
               <Button variant='contained' color='secondary' style={{ margin: '5px'}} onClick={handleSearch}>Search Map Area</Button>
