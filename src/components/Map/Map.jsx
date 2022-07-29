@@ -5,6 +5,7 @@ import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import Rating from '@material-ui/lab/Rating';
 
 import useStyles from './styles';
+import mapStyles from './mapStyles';
 
 const Map = ({ places, setCoordinates, setBounds, coordinates, setChildClicked }) => {
   const classes = useStyles();
@@ -18,7 +19,7 @@ const Map = ({ places, setCoordinates, setBounds, coordinates, setChildClicked }
         center={coordinates}
         defaultZoom={14}
         margin={[50,50,50,50]}
-        options={''}
+        options={{ disableDefaultUI: false, zoomControl: true, styles: mapStyles }}
         onChange={(e) => {
           console.log(e)
           setCoordinates({ lat: e.center.lat, lng: e.center.lng })
