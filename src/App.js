@@ -20,7 +20,7 @@ const App = () => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude }}) => {
       setCoordinates({ lat: latitude, lng: longitude });
-    });
+    }) || setCoordinates({ lat: 39.7392, lng: -104.9903 });
   }, []);
 
   useEffect(() => {
