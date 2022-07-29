@@ -21,7 +21,6 @@ const Map = ({ places, setCoordinates, setBounds, coordinates, setChildClicked }
         margin={[50,50,50,50]}
         options={{ disableDefaultUI: false, zoomControl: true, styles: mapStyles }}
         onChange={(e) => {
-          console.log(e)
           setCoordinates({ lat: e.center.lat, lng: e.center.lng })
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
         }}

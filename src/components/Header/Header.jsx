@@ -8,16 +8,18 @@ import { IoTelescopeOutline } from 'react-icons/io5';
 
 import useStyles from './styles.js';
 
-const Header = ({ setCoordinates }) => {
+const Header = ({ setCoordinates, setPlaces, setFilteredPlaces }) => {
   const classes = useStyles();
   const [autocomplete, setAutocomplete] = useState(null);
   
   const onLoad = (autoC) => setAutocomplete(autoC);
+  
   const onPlaceChanged = () => {
     const lat = autocomplete.getPlace().geometry.location.lat();
     const lng = autocomplete.getPlace().geometry.location.lng();
-
     setCoordinates({ lat, lng });
+    setPlaces([]);
+    setFilteredPlaces([]);
   }
 
   return (

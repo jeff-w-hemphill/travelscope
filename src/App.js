@@ -52,8 +52,8 @@ const App = () => {
   return (
     <>
         <CssBaseline />
-        <Header setCoordinates={setCoordinates} />
-        <Grid container spacing={3} style={{ width: '100%'}}>
+        <Header setCoordinates={setCoordinates} setPlaces={setPlaces} setFilteredPlaces={setFilteredPlaces} />
+        <Grid container spacing={3} style={{ width: '100%', margin: '0%'}}>
             <Grid item xs={12} md={4}>
                 <List 
                   places={filteredPlaces.length ? filteredPlaces : places} 
@@ -66,7 +66,7 @@ const App = () => {
                   setRating={setRating}  
                 />
             </Grid>
-            <Grid item xs={12} md={8}>
+            <Grid item  xs={12} md={8}>
               <Button variant='contained' style={{ margin: '5px', backgroundColor: 'green', color: 'white'}} onClick={handleSearch}>Search Map Area</Button>
                 <Map 
                   places={filteredPlaces.length ? filteredPlaces : places} 
