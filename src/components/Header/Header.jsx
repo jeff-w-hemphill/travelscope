@@ -23,7 +23,7 @@ const Header = ({ setCoordinates, setPlaces, setFilteredPlaces }) => {
   }
 
   return (
-    <AppBar position="static" style={{ color: 'white', backgroundColor: 'black'}}>
+    <AppBar position="sticky" style={{ color: 'white', backgroundColor: 'black'}}>
       <Toolbar className={classes.toolbar}>
         <Box display='flex'>
           <Typography variant="h5" className={classes.title}>
